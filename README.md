@@ -2,7 +2,27 @@
 
 My dotfiles: zshrc, aliases, functions, gitconfig, tmux.conf, ripgreprc, p10k.zsh, and more.
 
+Uses [Nix](https://nixos.org/) and [Home Manager](https://github.com/nix-community/home-manager) for declarative, cross-distro package management and dotfile symlinking.
+
 Vim is managed separately by [vimrc](https://github.com/eljulians/vimrc).
+
+## Prerequisites
+
+### 1. Install Nix
+
+```bash
+sh <(curl -L https://nixos.org/nix/install) --daemon
+```
+
+Restart your terminal (or `source /etc/profile`).
+
+### 2. Install Home Manager
+
+```bash
+nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
+nix-channel --update
+nix-shell '<home-manager>' -A install
+```
 
 ## Installation
 
@@ -15,12 +35,20 @@ cd ~/workspace/dotfiles
 The install script is idempotent - safe to run multiple times.
 
 What it does:
-1. Installs [oh-my-zsh](https://ohmyz.sh/) if not present
-2. Clones/updates the zsh theme and plugins (see below)
-3. Installs fonts for powerlevel10k
-4. Symlinks all dotfiles to `$HOME` (e.g., `zshrc` -> `~/.zshrc`)
+1. Installs packages via Home Manager (ripgrep, fzf, bat, tmux, git, etc.)
+2. Symlinks all dotfiles to `$HOME` via Home Manager
+3. Installs [oh-my-zsh](https://ohmyz.sh/) if not present
+4. Clones/updates the zsh theme and plugins
+5. Installs fonts for powerlevel10k
+6. Installs TPM (tmux plugin manager)
 
-The install logic is split into modular scripts under `scripts/` (prefixed with `_`), each handling one responsibility. The main `install.sh` orchestrates them.
+## Adding/Removing Tools
+
+Edit `home.nix` and add/remove packages from `home.packages`, then run:
+
+```bash
+home-manager switch
+```
 
 ## Zsh setup
 
@@ -68,8 +96,6 @@ After install, start tmux and press `prefix + I` to install the plugins.
 
 **Plugins:**
 - [tpm](https://github.com/tmux-plugins/tpm): plugin manager
-- [tmux-resurrect](https://github.com/tmux-plugins/tmux-resurrect): persist environment
-- [tmux-continuum](https://github.com/tmux-plugins/tmux-continuum/): continuous saving
 - [tmux-yank](https://github.com/tmux-plugins/tmux-yank): system clipboard
 - [tmux-mem-cpu-load](https://github.com/thewtex/tmux-mem-cpu-load): memory/cpu display
 - [tmux-fingers](https://github.com/Morantron/tmux-fingers): copy with hints
