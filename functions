@@ -61,3 +61,23 @@ function files() {
 function disk() {
     df -h | awk '$NF=="/"{printf "Disk Usage: %d/%dGB (%s)\n", $3,$2,$5}'
 }
+
+#
+# Git
+#
+
+function ghrepo() {
+    local remote_url=$(git config --get remote.origin.url 2>/dev/null)
+
+    if [ -z "$remote_url" ]; then
+        echo "Error: Could not find remote 'origin' URL. Are you in a Git repository?" >&2
+        return 1
+    fi
+
+    if [[ "$remote_url" =~ ^git@ ]]; then
+        https_url=$(echo "$remote_url" | sed -E 's/^git@//' | sed -E 's/:/\//' | sed -E 's/^/https:\/\//')
+        xdg-open "$https_url"
+    else
+        xdg-open "$remote_url"
+    fi
+}
