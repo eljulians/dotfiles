@@ -7,6 +7,7 @@ SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 "$SCRIPT_DIR/scripts/_zsh-theme.sh"
 "$SCRIPT_DIR/scripts/_zsh-plugins.sh"
 "$SCRIPT_DIR/scripts/_fonts.sh"
+"$SCRIPT_DIR/scripts/_tmux.sh"
 "$SCRIPT_DIR/scripts/_symlinks.sh"
 
 echo "Done."

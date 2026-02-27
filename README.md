@@ -58,8 +58,13 @@ Config: `~/.p10k.zsh` (run `p10k configure` to regenerate)
 2. Add the plugin name to the `plugins=()` array in `zshrc`
 3. Run `./install.sh` to install it
 
-## Tmux plugins
+## Tmux
 
+[TPM](https://github.com/tmux-plugins/tpm) (plugin manager) is installed by `scripts/_tmux.sh`.
+
+After install, start tmux and press `prefix + I` to install the plugins.
+
+**Plugins:**
 - [tpm](https://github.com/tmux-plugins/tpm): plugin manager
 - [tmux-resurrect](https://github.com/tmux-plugins/tmux-resurrect): persist environment
 - [tmux-continuum](https://github.com/tmux-plugins/tmux-continuum/): continuous saving
