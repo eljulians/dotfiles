@@ -27,6 +27,7 @@ alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 # For bd: https://github.com/vigneshwaranr/bd
 alias bd='. bd -si'
+alias bat='batcat'
 
 # Vim
 alias vims='vim -S'
