@@ -26,6 +26,8 @@
     curl
     wget
     bc
+    unimatrix
+    noto-fonts-cjk-sans
 
 
     # System monitoring

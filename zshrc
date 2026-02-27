@@ -1,3 +1,7 @@
+# Matrix rain on terminal open (press any key to skip)
+unimatrix -s 96 -l k -t 3
+clear
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
