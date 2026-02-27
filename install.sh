@@ -11,3 +11,4 @@ SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 "$SCRIPT_DIR/scripts/_tmux.sh"
 
 echo "Done."
+echo "Start tmux and press 'prefix + I' to install tmux plugins (including tmux-powerline)."

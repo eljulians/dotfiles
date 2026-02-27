@@ -5,3 +5,6 @@ Session.vim
 
 ### Python ###
 .envrc
+
+### Secrets ###
+secrets.sh

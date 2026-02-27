@@ -25,15 +25,32 @@
     htop
     curl
     wget
+    bc
+
+
+    # System monitoring
+    lm_sensors
+    playerctl
+    (writeShellScriptBin "ifstat" ''exec ${ifstat-legacy}/bin/ifstat-legacy "$@"'')
+
+    # Fonts
+    nerd-fonts.inconsolata
+    nerd-fonts.sauce-code-pro
+    nerd-fonts.fira-code
+    nerd-fonts.proggy-clean-tt
+    nerd-fonts.gohufont
 
     # Python
     python3
 
-    # Container tools (uncomment if needed)
-     docker
-     docker-compose
-     kubectl
+    # Container tools
+    docker
+    docker-compose
+    kubectl
   ];
+
+  # Enable fontconfig to find Nix fonts
+  fonts.fontconfig.enable = true;
 
   # Symlink existing dotfiles
   home.file = {
@@ -45,6 +62,8 @@
     ".gitconfig".source = ./gitconfig;
     ".gitignore".source = ./gitignore;
     ".tmux.conf".source = ./tmux.conf;
+    ".config/tmux-powerline/config.sh".source = ./tmux-powerline.conf.sh;
+    ".config/tmux-powerline/themes/custom.sh".source = ./tmux-powerline-theme.sh;
     ".ripgreprc".source = ./ripgreprc;
     ".Xmodmap".source = ./Xmodmap;
   };

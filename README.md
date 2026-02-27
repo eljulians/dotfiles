@@ -56,7 +56,8 @@ home-manager switch
 
 Dependencies (installed by `scripts/_fonts.sh`):
 - [MesloLGS NF](https://github.com/romkatv/powerlevel10k#fonts) font - required for icons/glyphs
-- After install, set your terminal font to "MesloLGS NF"
+
+**Terminal font:** Inconsolata Nerd Font (installed via Home Manager)
 
 Config: `~/.p10k.zsh` (run `p10k configure` to regenerate)
 
@@ -96,8 +97,28 @@ After install, start tmux and press `prefix + I` to install the plugins.
 
 **Plugins:**
 - [tpm](https://github.com/tmux-plugins/tpm): plugin manager
+- [tmux-powerline](https://github.com/erikw/tmux-powerline): status bar with segments
 - [tmux-yank](https://github.com/tmux-plugins/tmux-yank): system clipboard
 - [tmux-mem-cpu-load](https://github.com/thewtex/tmux-mem-cpu-load): memory/cpu display
 - [tmux-fingers](https://github.com/Morantron/tmux-fingers): copy with hints
 - [tmux-prefix-highlight](https://github.com/tmux-plugins/tmux-prefix-highlight): prefix key indicator
 - [tmux-urlview](https://github.com/tmux-plugins/tmux-urlview): quick URL open (depends on `urlview`)
+
+**Powerline customization:**
+- `tmux-powerline.conf.sh` - segment settings (colors, symbols, API configs)
+- `tmux-powerline-theme.sh` - which segments to show and their order
+
+After editing, run `home-manager switch` and restart tmux.
+
+## Secrets
+
+Some features require API keys. These are stored in `secrets.sh` which is gitignored.
+
+To set up:
+```bash
+cp secrets.sh.example secrets.sh
+# Edit secrets.sh with your values
+```
+
+Currently used for:
+- **Air quality segment**: [OpenWeather API key](https://openweathermap.org/api) (free) + your lat/lon
