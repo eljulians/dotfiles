@@ -15,11 +15,20 @@ The install script is idempotent - safe to run multiple times.
 What it does:
 1. Installs [oh-my-zsh](https://ohmyz.sh/) if not present
 2. Clones/updates the zsh theme and plugins (see below)
-3. Symlinks all dotfiles to `$HOME` (e.g., `zshrc` -> `~/.zshrc`)
+3. Installs fonts for powerlevel10k
+4. Symlinks all dotfiles to `$HOME` (e.g., `zshrc` -> `~/.zshrc`)
+
+The install logic is split into modular scripts under `scripts/` (prefixed with `_`), each handling one responsibility. The main `install.sh` orchestrates them.
 
 ## Zsh setup
 
 **Theme:** [powerlevel10k](https://github.com/romkatv/powerlevel10k)
+
+Dependencies (installed by `scripts/_fonts.sh`):
+- [MesloLGS NF](https://github.com/romkatv/powerlevel10k#fonts) font - required for icons/glyphs
+- After install, set your terminal font to "MesloLGS NF"
+
+Config: `~/.p10k.zsh` (run `p10k configure` to regenerate)
 
 **Plugins (third-party, cloned by install.sh):**
 - [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)
@@ -45,7 +54,7 @@ What it does:
 3. Commit and push if you want to keep the changes
 
 **Add a new zsh plugin:**
-1. Add the `clone_or_pull` line to `install.sh`
+1. Add the `clone_or_pull` line to `scripts/_zsh-plugins.sh`
 2. Add the plugin name to the `plugins=()` array in `zshrc`
 3. Run `./install.sh` to install it
 
