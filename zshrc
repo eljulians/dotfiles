@@ -118,13 +118,15 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-. "$HOME/.local/bin/env"
+# uv (Python package manager) and similar tools store PATH setup here
+[ -f "$HOME/.local/bin/env" ] && . "$HOME/.local/bin/env"
 
 source "$HOME/.aliases"
 source "$HOME/.functions"
 
+# virtualenvwrapper: manage Python virtualenvs with workon, mkvirtualenv, etc.
 export WORKON_HOME=~/.virtualenvs
-[ -f /usr/share/virtualenvwrapper/virtualenvwrapper.sh ] && source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
+[ -f /usr/share/virtualenvwrapper/virtualenvwrapper.sh ] && source /usr/share/virtualenvwrapper/virtualenvwrapper.sh 2>/dev/null
 
 # autojump
 [[ -s "$HOME/.autojump/etc/profile.d/autojump.sh" ]] && source "$HOME/.autojump/etc/profile.d/autojump.sh"
