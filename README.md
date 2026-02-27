@@ -2,6 +2,8 @@
 
 My dotfiles: zshrc, aliases, functions, gitconfig, tmux.conf, ripgreprc, p10k.zsh, and more.
 
+Vim is managed separately by [vimrc](https://github.com/eljulians/vimrc).
+
 ## Installation
 
 ```bash
