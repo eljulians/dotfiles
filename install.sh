@@ -9,6 +9,7 @@ SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 "$SCRIPT_DIR/scripts/_zsh-plugins.sh"
 "$SCRIPT_DIR/scripts/_fonts.sh"
 "$SCRIPT_DIR/scripts/_tmux.sh"
+"$SCRIPT_DIR/scripts/_atuin.sh"
 
 echo "Done."
 echo "Start tmux and press 'prefix + I' to install tmux plugins (including tmux-powerline)."

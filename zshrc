@@ -82,6 +82,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
+    fzf-tab
     git
     zsh-autosuggestions
     zsh-syntax-highlighting
@@ -151,3 +152,4 @@ eval "$(zoxide init zsh)"
 
 # atuin (shell history)
 eval "$(atuin init zsh)"
+

@@ -61,6 +61,19 @@
     docker-compose
     lazydocker
     kubectl
+
+    # Kubernetes
+    k9s
+    kubectx
+    stern
+
+    # Data/API
+    yq-go
+    xh
+    jless
+
+    # Terminal utilities
+    viddy
   ];
 
   # Enable fontconfig to find Nix fonts
