@@ -132,8 +132,7 @@ source "$HOME/.functions"
 export WORKON_HOME=~/.virtualenvs
 [ -f /usr/share/virtualenvwrapper/virtualenvwrapper.sh ] && source /usr/share/virtualenvwrapper/virtualenvwrapper.sh 2>/dev/null
 
-# autojump
-[[ -s "$HOME/.autojump/etc/profile.d/autojump.sh" ]] && source "$HOME/.autojump/etc/profile.d/autojump.sh"
+
 
 autoload -U compinit && compinit -u
 
@@ -146,3 +145,9 @@ autoload -U compinit && compinit -u
 export WORKSPACE="$HOME/workspace"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# zoxide (smart cd)
+eval "$(zoxide init zsh)"
+
+# atuin (shell history)
+eval "$(atuin init zsh)"

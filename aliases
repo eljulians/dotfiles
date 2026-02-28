@@ -16,13 +16,18 @@ alias jsonf='python -m json.tool'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 alias back='cd $OLDPWD'
-alias ls='ls --color=auto'
+# eza (modern ls)
+alias ls='eza --icons'
+alias ll='eza -l --icons --git'
+alias la='eza -la --icons --git'
+alias lt='eza --tree --icons --level=2'
+alias lta='eza --tree --icons --level=2 -a'
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 # For bd: https://github.com/vigneshwaranr/bd
 alias bd='. bd -si'
-alias bat='batcat'
+
 
 # Vim
 alias vims='vim -S'
@@ -61,6 +66,7 @@ alias grh='git reset --hard'
 alias gm='git merge --no-ff'
 
 # Docker
+alias lz='lazydocker'
 alias di='docker images'
 alias dps='docker ps'
 alias dpsa='docker ps -a'
@@ -92,7 +98,6 @@ alias ports='netstat -tulpn'
 
 # Disk
 alias dud='du -d 1 -h'
-alias duf='du -sh *'
 
 # Find
 alias fif='find -type f -name'

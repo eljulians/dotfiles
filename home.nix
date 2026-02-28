@@ -12,17 +12,28 @@
     fzf
     bat
     fd
-    autojump
+    eza
+    zoxide
+    atuin
     tmux
     xclip
 
     # Git
     git
     gh
+    delta
 
     # Dev tools
     jq
     htop
+    btop
+    dust
+    duf
+    procs
+    yazi
+    tldr
+    hyperfine
+    claude-code
     curl
     wget
     bc
@@ -48,6 +59,7 @@
     # Container tools
     docker
     docker-compose
+    lazydocker
     kubectl
   ];
 
