@@ -93,6 +93,7 @@
     ".config/tmux-powerline/themes/custom.sh".source = ./tmux-powerline-theme.sh;
     ".ripgreprc".source = ./ripgreprc;
     ".Xmodmap".source = ./Xmodmap;
+    ".config/atuin/config.toml".source = ./atuin.toml;
   };
 
   # Set environment variables
