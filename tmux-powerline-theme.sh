@@ -128,6 +128,7 @@ if [ -z "$TMUX_POWERLINE_RIGHT_STATUS_SEGMENTS" ]; then
 		#"macos_notification_count 29 255"
 		#"mailcount 9 255"
 		#"gcalcli 92 255"
+		"claude_usage 235 82 default_separator no_sep_bg_color no_sep_fg_color no_spacing_disable separator_disable"
 		"now_playing 25 255"
 		"cpu_temp 240 136"
 		#"cpu 240 136"
