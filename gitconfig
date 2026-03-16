@@ -19,6 +19,8 @@
     ss = status --short
     sv = status --verbose
 
+    dft = -c diff.external=difft diff
+
     graph = log --graph --oneline --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --date=short
 
     # Inspired by http://durdn.com/blog/2012/11/22/must-have-git-aliases-advanced-examples/

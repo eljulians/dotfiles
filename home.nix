@@ -39,6 +39,7 @@
     bc
     unimatrix
     noto-fonts-cjk-sans
+    pulumi
 
 
     # System monitoring
@@ -52,6 +53,9 @@
     nerd-fonts.fira-code
     nerd-fonts.proggy-clean-tt
     nerd-fonts.gohufont
+
+    # JavaScript (for npm-based tools like ccstatusline)
+    nodejs
 
     # Python
     python3
@@ -74,6 +78,7 @@
 
     # Terminal utilities
     viddy
+    difftastic
   ];
 
   # Enable fontconfig to find Nix fonts
@@ -94,6 +99,8 @@
     ".ripgreprc".source = ./ripgreprc;
     ".Xmodmap".source = ./Xmodmap;
     ".config/atuin/config.toml".source = ./atuin.toml;
+    ".config/ccstatusline/settings.json".source = ./ccstatusline.json;
+    ".claude/settings.json".source = ./claude-settings.json;
   };
 
   # Set environment variables

@@ -49,7 +49,7 @@ fi
 # shellcheck disable=SC2128
 if [ -z "$TMUX_POWERLINE_WINDOW_STATUS_FORMAT" ]; then
 	TMUX_POWERLINE_WINDOW_STATUS_FORMAT=(
-		"#[$(tp_format regular)]"
+		"#{?window_activity_flag,#[fg=colour208 bold],#[fg=colour245]}#[bg=colour235]"
 		"  #I#{?window_flags,#F, } "
 		"$TMUX_POWERLINE_SEPARATOR_RIGHT_THIN"
 		" #W "

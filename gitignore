@@ -6,5 +6,8 @@ Session.vim
 ### Python ###
 .envrc
 
+### Tmux ###
+.tmux
+
 ### Secrets ###
 secrets.sh

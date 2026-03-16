@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+selected=$(find "$HOME/workspace" -mindepth 1 -maxdepth 1 -type d | "$HOME/.nix-profile/bin/fzf")
+
+[[ -z "$selected" ]] && exit 0
+
+window_name=$(basename "$selected" | tr '.' '_')
+
+if tmux list-windows -F "#{window_name}" | grep -q "^${window_name}$"; then
+    tmux select-window -t "$window_name"
+else
+    tmux new-window -n "$window_name" -c "$selected"
+    [[ -f "$selected/.tmux" ]] && bash "$selected/.tmux"
+fi
