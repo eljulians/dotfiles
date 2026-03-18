@@ -126,6 +126,9 @@ source $ZSH/oh-my-zsh.sh
 # uv (Python package manager) and similar tools store PATH setup here
 [ -f "$HOME/.local/bin/env" ] && . "$HOME/.local/bin/env"
 
+# Rustup: cargo, rustc, and related tools
+[ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
+
 source "$HOME/.aliases"
 source "$HOME/.functions"
 

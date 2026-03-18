@@ -1,6 +1,8 @@
 { config, pkgs, ... }:
 
 {
+  nixpkgs.config.allowUnfree = true;
+
   programs.home-manager.enable = true;
 
   home.username = builtins.getEnv "USER";
@@ -40,7 +42,6 @@
     unimatrix
     noto-fonts-cjk-sans
     pulumi
-
 
     # System monitoring
     lm_sensors
@@ -100,8 +101,20 @@
     ".Xmodmap".source = ./Xmodmap;
     ".config/atuin/config.toml".source = ./atuin.toml;
     ".config/ccstatusline/settings.json".source = ./ccstatusline.json;
-    ".claude/settings.json".source = ./claude-settings.json;
+    ".local/bin/git-damage" = { source = ./bin/git-damage; executable = true; };
+    ".local/bin/moonphase" = { source = ./bin/moonphase; executable = true; };
+    ".local/bin/kaomoji" = { source = ./bin/kaomoji; executable = true; };
+    ".claude/settings.json" = {
+      source = ./claude-settings.json;
+      force = true;
+    };
   };
+
+  # Add directories to PATH
+  home.sessionPath = [
+    "$HOME/.cargo/bin"
+    "$HOME/.local/bin"
+  ];
 
   # Set environment variables
   home.sessionVariables = {

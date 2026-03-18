@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+# git-damage — Show uncommitted line changes with intensity indicator.
+# Used by ccstatusline as a custom-command widget.
+# Dependencies: git, grep (GNU)
+set -euo pipefail
+
+stats="$(git diff --shortstat 2>/dev/null || true)"
+readonly stats
+
+if [[ -z "${stats}" ]]; then
+  echo '✧ clean'
+  exit 0
+fi
+
+ins="$(echo "${stats}" | grep -oP '\d+(?= ins)' || true)"
+del="$(echo "${stats}" | grep -oP '\d+(?= del)' || true)"
+readonly total=$(( ${ins:-0} + ${del:-0} ))
+
+if (( total > 200 )); then
+  echo "⚡${total} lines"
+elif (( total > 50 )); then
+  echo "↯ ${total} lines"
+else
+  echo "✎ ${total} lines"
+fi

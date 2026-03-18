@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+# moonphase — Show current moon phase emoji, name, and illumination %.
+# Used by ccstatusline as a custom-command widget.
+# Dependencies: python3
+set -euo pipefail
+
+exec python3 -c "
+import datetime, math
+
+days = (datetime.date.today() - datetime.date(2000, 1, 6)).days
+phase = (days % 29.53) / 29.53
+index = int(phase * 8 + 0.5) % 8
+
+moons = ['🌑','🌒','🌓','🌔','🌕','🌖','🌗','🌘']
+names = ['New','Wax.Cres','1st Qtr','Wax.Gib','Full','Wan.Gib','3rd Qtr','Wan.Cres']
+illum = round(50 + 50 * math.cos(2 * math.pi * (phase - 0.5))) if phase > 0 else 0
+
+print(f'{moons[index]} {names[index]} {illum}%')
+"

@@ -3,56 +3,183 @@
   "lines": [
     [
       {
-        "id": "1",
+        "id": "01",
         "type": "model",
-        "color": "cyan"
+        "color": "black",
+        "backgroundColor": "cyan",
+        "bold": false
       },
       {
-        "id": "2",
-        "type": "separator"
+        "id": "02",
+        "type": "thinking-effort",
+        "color": "black",
+        "backgroundColor": "cyan",
+        "bold": false,
+        "mergeMode": "merge"
       },
       {
-        "id": "3",
-        "type": "context-length",
-        "color": "brightBlack"
+        "id": "dc103f57-e6ce-4f7f-85c8-70780b4a90d4",
+        "type": "output-style",
+        "color": "black",
+        "backgroundColor": "cyan",
+        "bold": false,
+        "mergeMode": "merge"
       },
       {
-        "id": "4",
-        "type": "separator"
+        "id": "5114b0a9-479d-49ca-9de0-72c95198b08e",
+        "type": "session-clock",
+        "color": "black",
+        "backgroundColor": "green",
+        "bold": false
       },
       {
-        "id": "5",
-        "type": "git-branch",
-        "color": "magenta"
-      },
-      {
-        "id": "6",
-        "type": "separator"
-      },
-      {
-        "id": "7",
-        "type": "git-changes",
-        "color": "yellow"
+        "id": "04",
+        "type": "context-percent",
+        "color": "black",
+        "backgroundColor": "blue",
+        "bold": false
       }
     ],
-    [],
-    []
+    [
+      {
+        "id": "08",
+        "type": "block-timer",
+        "color": "black",
+        "backgroundColor": "magenta",
+        "bold": false,
+        "metadata": {
+          "display": "progress",
+          "invert": "false"
+        }
+      },
+      {
+        "id": "21",
+        "type": "session-usage",
+        "color": "black",
+        "backgroundColor": "magenta",
+        "bold": false
+      },
+      {
+        "id": "09",
+        "type": "block-reset-timer",
+        "color": "black",
+        "backgroundColor": "magenta",
+        "bold": false,
+        "mergeMode": "merge-no-padding"
+      },
+      {
+        "id": "cffeed18-8c2c-40ac-a045-81af47bd0aad",
+        "type": "reset-timer",
+        "color": "black",
+        "backgroundColor": "magenta",
+        "bold": false,
+        "mergeMode": "merge"
+      },
+      {
+        "id": "357a9220-0536-42fa-86a5-06ea98f8f85c",
+        "type": "weekly-usage",
+        "color": "black",
+        "backgroundColor": "magenta",
+        "bold": false,
+        "mergeMode": "merge"
+      },
+      {
+        "id": "e0c15b3c-2709-4cae-a2cb-bc50943da8c7",
+        "type": "weekly-reset-timer",
+        "color": "black",
+        "backgroundColor": "magenta",
+        "bold": false,
+        "mergeMode": "merge-no-padding"
+      }
+    ],
+    [
+      {
+        "id": "99091d5c-03f0-4a14-aec7-6d6639eb7a0e",
+        "type": "context-bar",
+        "color": "blue",
+        "backgroundColor": "blue",
+        "bold": false
+      },
+      {
+        "id": "dbe664a6-797b-4316-a138-264663986a0f",
+        "type": "context-percentage-usable",
+        "color": "black",
+        "backgroundColor": "blue",
+        "bold": false,
+        "mergeMode": "merge-no-padding"
+      },
+      {
+        "id": "34",
+        "type": "custom-command",
+        "color": "black",
+        "backgroundColor": "cyan",
+        "bold": false,
+        "commandPath": "/home/julen/.local/bin/kaomoji"
+      },
+      {
+        "id": "33",
+        "type": "custom-command",
+        "color": "black",
+        "backgroundColor": "yellow",
+        "bold": false,
+        "commandPath": "/home/julen/.local/bin/moonphase"
+      }
+    ],
+    [
+      {
+        "id": "7f93d347-b5d0-418b-8e7b-dc27772c0cd1",
+        "type": "session-name",
+        "color": "black",
+        "backgroundColor": "green",
+        "bold": false
+      },
+      {
+        "id": "ed5ec789-cd90-422f-893a-cd020c5e4b2d",
+        "type": "version",
+        "color": "black",
+        "backgroundColor": "green",
+        "bold": false,
+        "mergeMode": "merge"
+      },
+      {
+        "id": "32",
+        "type": "custom-command",
+        "color": "black",
+        "backgroundColor": "green",
+        "bold": false,
+        "commandPath": "/home/julen/.local/bin/git-damage"
+      },
+      {
+        "id": "061f546c-dc3c-44de-9335-fa1321466819",
+        "type": "git-branch",
+        "color": "black",
+        "backgroundColor": "green",
+        "bold": false,
+        "mergeMode": "merge"
+      }
+    ]
   ],
   "flexMode": "full-minus-40",
   "compactThreshold": 60,
-  "colorLevel": 2,
-  "inheritSeparatorColors": false,
+  "colorLevel": 3,
+  "defaultPadding": " ",
+  "inheritSeparatorColors": true,
   "globalBold": false,
   "powerline": {
-    "enabled": false,
+    "enabled": true,
     "separators": [
-      ""
+      "\ue0b0"
     ],
     "separatorInvertBackground": [
       false
     ],
-    "startCaps": [],
-    "endCaps": [],
-    "autoAlign": false
+    "startCaps": [
+      "\ue0b2"
+    ],
+    "endCaps": [
+      "\ue0b4"
+    ],
+    "theme": "custom",
+    "autoAlign": true
   }
 }

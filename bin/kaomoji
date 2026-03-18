@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+# kaomoji — Show a deterministic random kaomoji per session.
+# Uses CLAUDE_SESSION_ID when available, falls back to parent PID.
+# Used by ccstatusline as a custom-command widget.
+# Dependencies: python3
+set -euo pipefail
+
+exec python3 -c "
+import hashlib, os
+
+FACES = [
+    # happy
+    '(◕‿◕)',     '(◠‿◠)',     '(◕ᴗ◕✿)',    '(☉‿☉)',     '(◉‿◉)',
+    '٩(◕‿◕)۶',  '(ᵔᴥᵔ)',     '(✧ω✧)',     '(─‿─)',     '(◠ᴗ◠)',
+    # animals
+    'ʕ•ᴥ•ʔ',    'ʕ·ᴥ·ʔ',    '(=^・ω・^=)', '(╭ರᴥ•́)',    '▼・ᴥ・▼',
+    '/ᐠ｡ꞈ｡ᐟ\\',  'ʕ￫ᴥ￩ʔ',    '(・⊝・)',     '◖⚆ᴥ⚆◗',    '(◉ɞ◉)',
+    # cool
+    '(⌐■_■)',    'ᕕ(ᐛ)ᕗ',    '(ง°ل͜°)ง',   '(¬‿¬)',     '( •_•)>⌐■-■',
+    '(ᵔ◡ᵔ)ﾉ',   '(☞ﾟヮﾟ)☞',  '(ﾉ◕ヮ◕)ﾉ',   '༼つ◕_◕༽つ',  '(づ◡﹏◡)づ',
+    # chaotic
+    '(╯°□°)╯',  '(ノಠ益ಠ)ノ',  '(⊙_⊙)',     '(ꐦ°᷄д°᷅)',   '(¬_¬)',
+    '┬─┬ノ(°‿°ノ)','(ಠ‿ಠ)',  '(눈‸눈)',     '(ᗒᗣᗕ)',     '(╥﹏╥)',
+    # zen
+    '(─‿‿─)',   '(◡‿◡)',     '(￣▽￣)',     '(⌒‿⌒)',     '(✿◠‿◠)',
+]
+
+sid = os.environ.get('CLAUDE_SESSION_ID', str(os.getppid()))
+index = int(hashlib.md5(sid.encode()).hexdigest(), 16) % len(FACES)
+print(FACES[index])
+"
