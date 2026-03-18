@@ -100,7 +100,12 @@
     ".ripgreprc".source = ./ripgreprc;
     ".Xmodmap".source = ./Xmodmap;
     ".config/atuin/config.toml".source = ./atuin.toml;
-    ".config/ccstatusline/settings.json".source = ./ccstatusline.json;
+    ".config/ccstatusline/settings.json" = {
+      source = pkgs.replaceVars ./ccstatusline.json {
+        HOME = config.home.homeDirectory;
+      };
+      force = true;
+    };
     ".local/bin/git-damage" = { source = ./bin/git-damage; executable = true; };
     ".local/bin/moonphase" = { source = ./bin/moonphase; executable = true; };
     ".local/bin/kaomoji" = { source = ./bin/kaomoji; executable = true; };

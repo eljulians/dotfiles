@@ -114,7 +114,7 @@
         "color": "black",
         "backgroundColor": "cyan",
         "bold": false,
-        "commandPath": "/home/julen/.local/bin/kaomoji"
+        "commandPath": "@HOME@/.local/bin/kaomoji"
       },
       {
         "id": "33",
@@ -122,7 +122,7 @@
         "color": "black",
         "backgroundColor": "yellow",
         "bold": false,
-        "commandPath": "/home/julen/.local/bin/moonphase"
+        "commandPath": "@HOME@/.local/bin/moonphase"
       }
     ],
     [
@@ -147,7 +147,7 @@
         "color": "black",
         "backgroundColor": "green",
         "bold": false,
-        "commandPath": "/home/julen/.local/bin/git-damage"
+        "commandPath": "@HOME@/.local/bin/git-damage"
       },
       {
         "id": "061f546c-dc3c-44de-9335-fa1321466819",
