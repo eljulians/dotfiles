@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   nixpkgs.config.allowUnfree = true;
@@ -35,7 +35,6 @@
     yazi
     tldr
     hyperfine
-    claude-code
     curl
     wget
     bc
@@ -119,13 +118,22 @@
   home.sessionPath = [
     "$HOME/.cargo/bin"
     "$HOME/.local/bin"
+    "$HOME/.npm-global/bin"
   ];
 
   # Set environment variables
   home.sessionVariables = {
     WORKSPACE = "$HOME/workspace";
     RIPGREP_CONFIG_PATH = "$HOME/.ripgreprc";
+    NPM_CONFIG_PREFIX = "$HOME/.npm-global";
   };
+
+  # Auto-update npm-based tools on home-manager switch
+  home.activation.updateNpmTools = lib.hm.dag.entryAfter ["writeBoundary"] ''
+    export NPM_CONFIG_PREFIX="$HOME/.npm-global"
+    ${pkgs.nodejs}/bin/npm install -g @anthropic-ai/claude-code@latest 2>/dev/null || true
+    ${pkgs.nodejs}/bin/npm install -g @google/gemini-cli@latest 2>/dev/null || true
+  '';
 
   # This value determines the Home Manager release compatibility
   # Don't change unless you know what you're doing
