@@ -131,9 +131,10 @@
   # Auto-update npm-based tools on home-manager switch
   home.activation.updateNpmTools = lib.hm.dag.entryAfter ["writeBoundary"] ''
     export NPM_CONFIG_PREFIX="$HOME/.npm-global"
+    export PATH="${pkgs.nodejs}/bin:$PATH"
     mkdir -p "$HOME/.npm-global"
-    ${pkgs.nodejs}/bin/npm install -g @anthropic-ai/claude-code@latest || echo "WARNING: claude-code npm install failed"
-    ${pkgs.nodejs}/bin/npm install -g @google/gemini-cli@latest || echo "WARNING: gemini-cli npm install failed"
+    npm install -g @anthropic-ai/claude-code@latest || echo "WARNING: claude-code npm install failed"
+    npm install -g @google/gemini-cli@latest || echo "WARNING: gemini-cli npm install failed"
   '';
 
   # This value determines the Home Manager release compatibility

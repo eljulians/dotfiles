@@ -123,6 +123,9 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+# Home Manager session variables (PATH, env vars)
+[ -f "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh" ] && . "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
+
 # uv (Python package manager) and similar tools store PATH setup here
 [ -f "$HOME/.local/bin/env" ] && . "$HOME/.local/bin/env"
 
