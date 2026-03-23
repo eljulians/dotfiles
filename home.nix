@@ -135,6 +135,7 @@
     mkdir -p "$HOME/.npm-global"
     npm install -g @anthropic-ai/claude-code@latest || echo "WARNING: claude-code npm install failed"
     npm install -g @google/gemini-cli@latest || echo "WARNING: gemini-cli npm install failed"
+    npm install -g ccstatusline@latest || echo "WARNING: ccstatusline npm install failed"
   '';
 
   # This value determines the Home Manager release compatibility
