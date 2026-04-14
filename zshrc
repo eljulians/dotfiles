@@ -123,7 +123,7 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# Home Manager session variables (PATH, env vars)
+# Home Manager session variables (PATH, env vars from home.nix)
 [ -f "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh" ] && . "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
 
 # uv (Python package manager) and similar tools store PATH setup here
@@ -148,8 +148,6 @@ autoload -U compinit && compinit -u
 
 [ -f ~/.quantumrc ] && source ~/.quantumrc
 [ -f ~/.datarobotrc ] && source ~/.datarobotrc
-
-export WORKSPACE="$HOME/workspace"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 

@@ -130,6 +130,7 @@
 
   # Auto-update npm-based tools on home-manager switch
   home.activation.updateNpmTools = lib.hm.dag.entryAfter ["writeBoundary"] ''
+    export PATH="${pkgs.nodejs}/bin:$PATH"
     export NPM_CONFIG_PREFIX="$HOME/.npm-global"
     export PATH="${pkgs.nodejs}/bin:$PATH"
     mkdir -p "$HOME/.npm-global"
