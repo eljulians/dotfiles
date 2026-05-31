@@ -109,7 +109,32 @@
     ".local/bin/moonphase" = { source = ./bin/moonphase; executable = true; };
     ".local/bin/kaomoji" = { source = ./bin/kaomoji; executable = true; };
     ".claude/settings.json" = {
-      source = ./claude-settings.json;
+      source = pkgs.replaceVars ./claude-settings.json {
+        HOME = config.home.homeDirectory;
+      };
+      force = true;
+    };
+    ".claude/CLAUDE.md" = {
+      source = ./ai/claude/CLAUDE.md;
+      force = true;
+    };
+    ".claude/RTK.md" = {
+      source = ./ai/claude/RTK.md;
+      force = true;
+    };
+    ".claude/hooks/rtk-rewrite.sh" = {
+      source = ./ai/claude/hooks/rtk-rewrite.sh;
+      executable = true;
+      force = true;
+    };
+    ".codex/AGENTS.md" = {
+      source = pkgs.replaceVars ./ai/codex/AGENTS.md {
+        HOME = config.home.homeDirectory;
+      };
+      force = true;
+    };
+    ".codex/RTK.md" = {
+      source = ./ai/codex/RTK.md;
       force = true;
     };
   };
@@ -128,9 +153,8 @@
     NPM_CONFIG_PREFIX = "$HOME/.npm-global";
   };
 
-  # Auto-update npm-based tools on home-manager switch
-  home.activation.updateNpmTools = lib.hm.dag.entryAfter ["writeBoundary"] ''
-    export PATH="${pkgs.nodejs}/bin:$PATH"
+  # Auto-update npm-based and external CLI tools on home-manager switch
+  home.activation.updateExternalTools = lib.hm.dag.entryAfter ["writeBoundary"] ''
     export NPM_CONFIG_PREFIX="$HOME/.npm-global"
     export PATH="${pkgs.nodejs}/bin:$PATH"
     mkdir -p "$HOME/.npm-global"
@@ -138,6 +162,7 @@
     npm install -g @google/gemini-cli@latest || echo "WARNING: gemini-cli npm install failed"
     npm install -g ccstatusline@latest || echo "WARNING: ccstatusline npm install failed"
     npm install -g @openai/codex || echo "WARNING: codex npm install failed"
+    curl -fsSL https://raw.githubusercontent.com/rtk-ai/rtk/refs/heads/master/install.sh | sh || echo "WARNING: rtk install failed"
   '';
 
   # This value determines the Home Manager release compatibility
