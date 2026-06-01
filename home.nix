@@ -128,16 +128,55 @@
       force = true;
     };
     ".codex/AGENTS.md" = {
-      source = pkgs.replaceVars ./ai/codex/AGENTS.md {
+      source = ./ai/codex/AGENTS.md;
+      force = true;
+    };
+    ".codex/config.template.toml" = {
+      source = pkgs.replaceVars ./ai/codex/config.toml {
         HOME = config.home.homeDirectory;
       };
+      force = true;
+    };
+    ".codex/deep-review.config.toml" = {
+      source = ./ai/codex/deep-review.config.toml;
+      force = true;
+    };
+    ".codex/full-send.config.toml" = {
+      source = ./ai/codex/full-send.config.toml;
       force = true;
     };
     ".codex/RTK.md" = {
       source = ./ai/codex/RTK.md;
       force = true;
     };
+    ".codex/hooks/rtk-rewrite.sh" = {
+      source = ./ai/codex/hooks/rtk-rewrite.sh;
+      executable = true;
+      force = true;
+    };
+    ".codex/hooks/turn-done.sh" = {
+      source = ./ai/codex/hooks/turn-done.sh;
+      executable = true;
+      force = true;
+    };
   };
+
+  home.activation.codexWritableConfig = lib.hm.dag.entryAfter ["linkGeneration"] ''
+    codex_dir="$HOME/.codex"
+    target="$codex_dir/config.toml"
+    template="$codex_dir/config.template.toml"
+
+    mkdir -p "$codex_dir" "$codex_dir/worktrees"
+
+    if [ ! -e "$target" ] || [ -L "$target" ]; then
+      if [ -e "$target" ] && [ ! -e "$target.pre-home-manager" ]; then
+        cp --dereference "$target" "$target.pre-home-manager"
+      fi
+      rm -f "$target"
+      cp "$template" "$target"
+      chmod u+w "$target"
+    fi
+  '';
 
   # Add directories to PATH
   home.sessionPath = [
@@ -156,7 +195,7 @@
   # Auto-update npm-based and external CLI tools on home-manager switch
   home.activation.updateExternalTools = lib.hm.dag.entryAfter ["writeBoundary"] ''
     export NPM_CONFIG_PREFIX="$HOME/.npm-global"
-    export PATH="${pkgs.nodejs}/bin:$PATH"
+    export PATH="${pkgs.nodejs}/bin:${pkgs.curl}/bin:${pkgs.gnutar}/bin:${pkgs.gzip}/bin:$PATH"
     mkdir -p "$HOME/.npm-global"
     npm install -g @anthropic-ai/claude-code@latest || echo "WARNING: claude-code npm install failed"
     npm install -g @google/gemini-cli@latest || echo "WARNING: gemini-cli npm install failed"
