@@ -108,10 +108,9 @@
     ".local/bin/git-damage" = { source = ./bin/git-damage; executable = true; };
     ".local/bin/moonphase" = { source = ./bin/moonphase; executable = true; };
     ".local/bin/kaomoji" = { source = ./bin/kaomoji; executable = true; };
-    ".claude/settings.json" = {
-      source = ./claude-settings.json;
-      force = true;
-    };
+    # NOTE: ~/.claude/settings.json is intentionally NOT managed via home.file.
+    # Claude Code writes to it at runtime (e.g. /effort), and a /nix/store
+    # symlink would be read-only. See home.activation.seedClaudeSettings below.
   };
 
   # Add directories to PATH
@@ -127,6 +126,26 @@
     RIPGREP_CONFIG_PATH = "$HOME/.ripgreprc";
     NPM_CONFIG_PREFIX = "$HOME/.npm-global";
   };
+
+  # Manage ~/.claude/settings.json as a writable file. Claude Code mutates
+  # it at runtime (e.g. /effort), so it can't be a /nix/store symlink.
+  # Strategy: jq-merge claude-settings.json INTO the live file on every switch.
+  #   - keys declared in claude-settings.json are enforced (dotfiles win)
+  #   - keys not declared are preserved (Claude's runtime mutations survive)
+  home.activation.seedClaudeSettings = lib.hm.dag.entryAfter ["writeBoundary"] ''
+    target="$HOME/.claude/settings.json"
+    src=${./claude-settings.json}
+    mkdir -p "$HOME/.claude"
+    [ -L "$target" ] && rm -f "$target"
+    if [ ! -e "$target" ]; then
+      install -m 644 "$src" "$target"
+    else
+      tmp=$(mktemp)
+      ${pkgs.jq}/bin/jq -s '.[0] * .[1]' "$target" "$src" > "$tmp"
+      install -m 644 "$tmp" "$target"
+      rm -f "$tmp"
+    fi
+  '';
 
   # Auto-update npm-based tools on home-manager switch
   home.activation.updateNpmTools = lib.hm.dag.entryAfter ["writeBoundary"] ''
