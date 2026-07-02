@@ -26,6 +26,7 @@
     delta
 
     # Dev tools
+    neovim
     jq
     htop
     btop
