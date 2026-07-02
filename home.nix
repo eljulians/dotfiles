@@ -1,5 +1,22 @@
 { config, pkgs, lib, ... }:
 
+let
+  # nixGL: lets Nix-built GUI apps find the system's OpenGL/Mesa on non-NixOS
+  # (Ubuntu here). Without it, GPU apps fail with "failed to find suitable GL
+  # configuration". Pinned for reproducibility; bump rev + sha256 to update.
+  nixGL = import (builtins.fetchTarball {
+    url = "https://github.com/nix-community/nixGL/archive/b6105297e6f0cd041670c3e8628394d4ee247ed5.tar.gz";
+    sha256 = "1zv3bshk0l4hfh1s7s3jzwjxl0nqqcvc4a3kydd3d4lgh7651d3x";
+  }) { inherit pkgs; };
+
+  # Alacritty launched through nixGL's Mesa wrapper. Mesa drives both Intel
+  # (iris) and AMD (radeonsi), so this same config is portable across the
+  # Intel laptop and the AMD machine. Exposed as `alacritty` on PATH.
+  # (For a proprietary-NVIDIA-primary host you'd swap in nixGL.auto.nixGLNvidia.)
+  alacritty-nixgl = pkgs.writeShellScriptBin "alacritty" ''
+    exec ${nixGL.nixGLMesa}/bin/nixGLMesa ${pkgs.alacritty}/bin/alacritty "$@"
+  '';
+in
 {
   nixpkgs.config.allowUnfree = true;
 
@@ -80,6 +97,7 @@
     # Terminal utilities
     viddy
     difftastic
+    alacritty-nixgl  # alacritty wrapped with nixGL (see let block above)
   ];
 
   # Enable fontconfig to find Nix fonts
@@ -100,6 +118,7 @@
     ".ripgreprc".source = ./ripgreprc;
     ".Xmodmap".source = ./Xmodmap;
     ".config/atuin/config.toml".source = ./atuin.toml;
+    ".config/alacritty/alacritty.toml".source = ./alacritty.toml;
     ".config/ccstatusline/settings.json" = {
       source = pkgs.replaceVars ./ccstatusline.json {
         HOME = config.home.homeDirectory;
