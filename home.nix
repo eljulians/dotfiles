@@ -16,6 +16,14 @@ let
   alacritty-nixgl = pkgs.writeShellScriptBin "alacritty" ''
     exec ${nixGL.nixGLMesa}/bin/nixGLMesa ${pkgs.alacritty}/bin/alacritty "$@"
   '';
+
+  # Neovim pinned to a newer nixpkgs revision (0.12.4) than the main channel,
+  # so upgrading it doesn't drag every other package along. Bump rev +
+  # sha256 to update further.
+  nvimPkgs = import (builtins.fetchTarball {
+    url = "https://github.com/NixOS/nixpkgs/archive/b7c2ada94fe99c15b0dbcf4d11fd7850b957a436.tar.gz";
+    sha256 = "1hw875y585lkhygn09kcbmdgm58b0nb5k0d38qwlvfngprsnp2r0";
+  }) { inherit (pkgs) system; };
 in
 {
   nixpkgs.config.allowUnfree = true;
@@ -43,7 +51,7 @@ in
     delta
 
     # Dev tools
-    neovim
+    nvimPkgs.neovim
     jq
     htop
     btop
