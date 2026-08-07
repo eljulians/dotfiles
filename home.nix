@@ -136,6 +136,17 @@ in
     ".local/bin/git-damage" = { source = ./bin/git-damage; executable = true; };
     ".local/bin/moonphase" = { source = ./bin/moonphase; executable = true; };
     ".local/bin/kaomoji" = { source = ./bin/kaomoji; executable = true; };
+    # These are referenced by the existing writable ~/.codex/config.toml.
+    ".codex/hooks/rtk-rewrite.sh" = {
+      source = ./ai/codex/hooks/rtk-rewrite.sh;
+      executable = true;
+      force = true;
+    };
+    ".codex/hooks/turn-done.sh" = {
+      source = ./ai/codex/hooks/turn-done.sh;
+      executable = true;
+      force = true;
+    };
     # NOTE: ~/.claude/settings.json is intentionally NOT managed via home.file.
     # Claude Code writes to it at runtime (e.g. /effort), and a /nix/store
     # symlink would be read-only. See home.activation.seedClaudeSettings below.
